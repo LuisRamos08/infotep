@@ -1,0 +1,289 @@
+
+/*Dashboard and menu*/
+:root {
+  --main-bg-color: #0275d8;
+  --main-text-color: #0275d8;
+  --second-text-color: #bbbec5;
+  --second-bg-color: #5aaffa;
+}
+
+.primary-text {
+  color: var(--main-text-color);
+}
+
+.second-text {
+  color: var(--second-text-color);
+}
+
+.primary-bg {
+  background-color: var(--main-bg-color);
+}
+
+.secondary-bg {
+  background-color: var(--second-bg-color);
+}
+
+.rounded-full {
+  border-radius: 100%;
+}
+
+#wrapper {
+  overflow-x: hidden;
+  background-image: linear-gradient(
+    to right,
+    #8cb7dd,
+    #8ab7de,
+    #a0c1dd,
+    #b4cadc,
+    #c3d1dd
+  );
+}
+
+#sidebar-wrapper {
+  min-height: 100vh;
+  margin-left: -15rem;
+  -webkit-transition: margin 0.25s ease-out;
+  -moz-transition: margin 0.25s ease-out;
+  -o-transition: margin 0.25s ease-out;
+  transition: margin 0.25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+  padding: 0.875rem 1.25rem;
+  font-size: 1.2rem;
+}
+
+#sidebar-wrapper .list-group {
+  width: 15rem;
+}
+
+#page-content-wrapper {
+  min-width: 100vw;
+}
+
+
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
+}
+
+#changePassword{
+  cursor: pointer;
+}
+
+#menu-toggle {
+  cursor: pointer;
+}
+
+.list-group-item {
+  border: none;
+  padding: 20px 30px;
+}
+
+.list-group-item.active {
+  background-color: transparent;
+  color: var(--main-text-color);
+  font-weight: bold;
+  border: none;
+}
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -15rem;
+  }
+}
+
+/*Forms*/
+.page-content{
+  max-width: 800px;
+  margin: 50px auto;
+  position: relative;
+  box-shadow: 0 10px 30px 0px rgba(0,0,0,0.1);
+  padding: 30px;
+}
+
+.data-form .form-field{
+  position: relative;
+  margin: 32px 0;
+}
+
+.data-form .input-text{
+  display: block;
+  background : inherit;
+  width: 100%;
+  height: 36px;
+  border-width: 0 0 2px 0;
+  /*boder-color: #5543ca;*/
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 400;
+}
+
+.data-form .form-select{
+  display: block;
+  background : inherit;
+  width: 100%;
+  height: 36px;
+  border-width: 0 0 2px 0;
+  /*boder-color: #5543ca;*/
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 400;
+}
+
+.data-form .input-text:focus + .label,
+.data-form .input-text.non-empty + .label,
+.data-form .input-text:not(:placeholder-shown) + .label {
+  transform: translateY(-24px);
+}
+
+.data-form .input-text:focus{
+  outline: none;
+}
+
+.data-form .label{
+  position: absolute;
+  left: 20px;
+  bottom: 11px;
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 400;
+  color: #5543ca;
+  cursor: text;
+  text-transform: capitalize;
+  transition: transform 0.2s ease-in-out;
+}
+
+.data-form .label2{
+  padding: 5px;
+  left: 30px;
+  bottom: 11px;
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 400;
+  color: #5543ca;
+  cursor: text;
+  text-transform: capitalize;
+}
+
+.data-form .submit-btn{
+  display: inline-block;
+  background-image: linear-gradient(125deg,#a72879,#064497);
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 16px;
+  padding: 8px 16px;
+  border: none;
+  width: 200px;
+  cursor: pointer;
+}
+
+/* ==== Data table  = Start ===== */
+
+.table-responsive{
+  background: #fff;
+  padding: 15px;
+  box-shadow: 1px 3px 5px #aaa;
+  border-radius: 5px;
+}
+
+.table-responsive .btn{
+   padding: 5px 10px;
+   margin: 10px 3px 10px 0;
+}
+/* ==== Data table  = End  ===== */
+
+#snackbar {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+  text-align: center;
+  border-radius: 2px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 17px;
+  opacity: 1;
+}
+
+#snackbar.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+#successSnackbar {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  padding: 20px;
+  background-color: #04AA6D;
+  color: white;
+  text-align: center;
+  border-radius: 2px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 17px;
+  opacity: 1;
+}
+
+#successSnackbar.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;} 
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;} 
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+.show{
+    visibility: visible;
+}
+
+.hide{
+    visibility: hidden;
+}
+
+.contenedor {
+	max-width: 90%;
+	width: 400px;
+	margin: 80px auto;
+}
+
+.contenedorQR {
+	display: flex;
+	justify-content: center;
+	padding: 40px 0;
+}

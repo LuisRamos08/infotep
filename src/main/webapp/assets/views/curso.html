@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/styles.css"/>
+    <link rel="stylesheet" type="text/css" href="../datatable/DataTables-1.12.1/css/dataTables.bootstrap5.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../datatable/Buttons-2.2.3/css/buttons.bootstrap5.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../datatable/Responsive-2.3.0/css/responsive.bootstrap5.min.css"/>
+
+
+
+    <title>DateAdmin</title>
+</head>
+
+<body>
+<div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
+    <div class="bg-white" id="sidebar-wrapper">
+        <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom"><i
+                class="fas fa-circle-info me-2"></i>Infotep</div>
+        <div class="list-group list-group-flush my-3">
+            <a href="../../index.html"
+               class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                    class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
+            <a href="curso.html"
+               class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                    class="fas fa-hand-holding-heart me-2"></i>Asesores</a>
+            <a href="facilitador.html"
+               class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                    class="fas fa-person-chalkboard me-2"></i>Facilitadores</a>
+            <a href="participante.html"
+               class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                    class="fas fa-user-tie me-2"></i>Participantes</a>
+            <a href="curso.html"
+               class="list-group-item list-group-item-action bg-transparent second-text active"><i
+                    class="fas fa-user-graduate me-2"></i>Cursos</a>
+            <a href="#" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
+                    class="fas fa-power-off me-2"></i>Logout</a>
+        </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper" class="pcw">
+        <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
+            <div class="d-flex align-items-center">
+                <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
+                <h2 class="fs-2 m-0">Curso</h2>
+            </div>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown"
+                           role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user me-2"></i>Usuario
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><a class="dropdown-item" href="#">Settings</a></li>
+                            <li><a class="dropdown-item" href="#">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- =======  Data-Table  = Start  ========================== -->
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div id="tblcursos" class="table-responsive">
+                        <table id="example" class="table table-striped table-bordered"
+                               style="background-color:white;">
+                            <thead class="bg-primary">
+                            <tr>
+                                <th>Codigo</th>
+                                <th>Nombre</th>
+                                <th>Fecha Inicio</th>
+                                <th>Fecha Termino</th>
+                                <th>Horas</th>
+                                <th>Empresa</th>
+                                <th>Asesor</th>
+                                <th>Facilitador</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <!-- =======  Data-Table  = Data  ========================== -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- =======  Data-Table  = End  ===================== -->
+
+        <div id="successSnackbar"></div>
+
+        <!-- The Modal -->
+        <div class="modal" id="cursoModal">
+            <div id="snackbar"></div>
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Curso</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <form id="frmCurso">
+                            <input type="hidden" id="idCurso" name="idCurso" value=0>
+                            <div class="data-form row">
+                                <div class="form-field col-lg-6">
+                                    <input type="text" id="nombre" name="nombre" class="input-text" placeholder=" " required>
+                                    <label for="nombre" class="label">nombre</label>
+                                </div>
+                                <div class="form-field col-lg-6">
+                                    <input type="text" id="apellido" name="apellido" class="input-text"
+                                           placeholder=" " required>
+                                    <label for="apellido" class="label">apellido</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" type="button"
+                                onclick='saveCurso("frmCurso", "#cursoModal")'>Guardar</button>
+                        <button class="btn btn-warning" onclick="{document.getElementById('frmCurso').reset()}"
+                                data-bs-dismiss="modal">Cancelar</button>
+                        <button class="btn btn-danger" type="button"
+                                onclick='deleteCurso("frmCurso", "#cursoModal")'>Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- /#page-content-wrapper -->
+
+    <div id="curso_info"  style="display:none">
+        <div>
+            <button class="btn btn-info" onclick="showList()">Atras</button>
+        </div>
+        <div class="contenedor">
+            <div id="contenedorQR" class="contenedorQR"></div>
+        </div>
+        <div id="info" style="maring-left:0">
+            <div style="width: 50%; float:left">
+                #left content in here
+            </div>
+            <div style="width: 50%; float:right; background-color:#000;">
+                #right content in there
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript" src="../js/mylib.js"></script>
+<script type="text/javascript" src="../js/curso.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="../datatable/jQuery-3.6.0/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../datatable/JSZip-2.5.0/jszip.min.js"></script>
+<script type="text/javascript" src="../datatable/pdfmake-0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript" src="../datatable/pdfmake-0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript" src="../datatable/DataTables-1.12.1/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="../datatable/DataTables-1.12.1/js/dataTables.bootstrap5.min.js"></script>
+<script type="text/javascript" src="../datatable/Buttons-2.2.3/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="../datatable/Buttons-2.2.3/js/buttons.bootstrap5.min.js"></script>
+<script type="text/javascript" src="../datatable/Buttons-2.2.3/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="../datatable/Buttons-2.2.3/js/buttons.print.min.js"></script>
+<script type="text/javascript" src="../datatable/Responsive-2.3.0/js/dataTables.responsive.min.js"></script>
+<script type="text/javascript" src="../datatable/Responsive-2.3.0/js/responsive.bootstrap5.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<script>
+            const contenedorQR = document.getElementById('contenedorQR');
+            const QR = new QRCode(contenedorQR);
+            var el = document.getElementById("wrapper");
+            var toggleButton = document.getElementById("menu-toggle");
+
+            toggleButton.onclick = function () {
+                el.classList.toggle("toggled");
+            };
+            listCursos();
+
+            function showCurso(e){
+                document.getElementById('page-content-wrapper').style.display= "none";
+                document.getElementById('curso_info').style.display= "block";
+                document.getElementById('info').innerHTML = e;
+                //-------------------------------------------------
+
+                var xhr = new XMLHttpRequest();
+                var url = 'http://localhost:8080/cursos/getuuid/'+e;
+                xhr.open("GET", url, true);
+                xhr.setRequestHeader("Content-Type", "application/json");
+                xhr.setRequestHeader('X-PINGOTHER', 'pingpong');
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        var json = JSON.parse(xhr.responseText);
+                        if(json != null){
+                            data = json;
+                            QR.makeCode(json.uuid);
+                        }
+                    }
+                };
+                xhr.send();
+
+
+                //-------------------------------------------------
+
+            }
+
+            function showList(){
+                document.getElementById('page-content-wrapper').style.display= "block";
+                document.getElementById('curso_info').style.display= "none";
+            }
+
+        </script>
+</body>
+</html>
